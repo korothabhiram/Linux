@@ -54,6 +54,101 @@ For a detailed guide, refer to the official [WSL installation documentation](htt
 
 ---
 
+## 🧑🏽‍💻 Shell Customization – Because Looks Matter Too
+
+Once WSL is installed and running smoothly, it's time to pimp your terminal! Here's how to make your shell not just functional, but fabulous:
+
+### 3. 🌀 Installing ZSH and Setting It as Default
+
+```bash
+sudo apt update
+sudo apt install zsh -y
+chsh -s /bin/zsh
+```
+
+Log out and back in—or restart WSL—to start using `zsh`.
+
+---
+
+### 4. ✨ Oh-My-Zsh, Powerlevel10k & Nerd Fonts Setup
+
+Let’s bring the ✨bling✨ to your terminal!
+
+🔗 [Download Nerd Fonts](https://www.nerdfonts.com/font-downloads)  
+Extract and install a font of your choice (e.g., `Hack Nerd Font`).
+
+In **Windows Terminal**:
+- Go to **Settings → Your WSL profile → Appearance tab**
+- Select your installed Nerd Font (e.g., `HackNerdFont`) 🧑🏽‍💻
+
+Then, install Oh-My-Zsh and Powerlevel10k:
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Update your Zsh config to use the theme:
+
+```bash
+vi ~/.zshrc
+# Inside .zshrc
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Then run:
+
+```bash
+p10k configure
+```
+
+Enjoy your shiny new terminal that makes every `ls` feel like an event. 🎉
+
+---
+
+## 🧠 Integrating VS Code with WSL – The Smart Way
+
+Developing in WSL is great, but pairing it with Visual Studio Code takes productivity to the next level. Here's how to set it up:
+
+### 5. 🧩 Install the Remote - WSL Extension
+
+To enable seamless development within WSL, install the **Remote - WSL** extension in VS Code.
+
+- Open VS Code.
+- Navigate to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or pressing `Ctrl+Shift+X`.
+- Search for `Remote - WSL` and click **Install**.
+
+Once installed, you can open your WSL environment directly in VS Code by opening the Command Palette (`Ctrl+Shift+P`) and selecting `Remote-WSL: New Window`.
+
+---
+
+### 6. 🎨 Customize VS Code Settings for WSL
+
+To enhance your development experience, customize your VS Code settings to align with your WSL environment.
+
+Open your settings (`Ctrl+,`) and switch to the **WSL** context. Then, edit the `settings.json` file to include the following configurations:
+
+```json
+{
+    "workbench.colorTheme": "Default Dark+",
+    "notebook.lineNumbers": "on",
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "editor.fontLigatures": false,
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "editor.fontFamily": "Hack Nerd Font",
+    "workbench.startupEditor": "none"
+}
+```
+
+These settings ensure that your terminal uses Zsh with the Nerd Font, auto-saves files after a delay, and applies your preferred themes and icons.
+
+---
+
 ## 🤝 Contributions & Feedback
 
 While this is a personal project, I'm open to suggestions, improvements, or shared experiences. Feel free to fork, raise issues, or submit pull requests. Let's make WSL setups smoother together!
